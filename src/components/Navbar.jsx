@@ -1,23 +1,34 @@
 import React from 'react'
+import { useContext} from 'react';
+import { useNavigate } from "react-router-dom";
 
-import Button1 from './Buttons/Button1'
+import Button1_SignOut from './Buttons/Button1_SignOut'
+import AuthContext from '../context/AuthContext';
 
 const Navbar = () => {
-  return (
-    <div className='flex justify-between items-center px-4 py-2 h-full'>
-      
-        <div className="logo text-white text-5xl">
-            LOGO
-        </div>
+    const { signoutFn } = useContext(AuthContext);
+    const navigate = useNavigate();
 
-        <div className="signout">
-            <Button1>
-                Sign Out
-            </Button1>
-        </div>
+    const handleExit = (e) => {
+        signoutFn();
+        navigate("/signin");
+    }
 
-    </div>
-  )
+    return (
+        <div className='flex justify-between items-center px-4 py-2 h-full'>
+        
+            <div className="logo text-white text-5xl">
+                LOGO
+            </div>
+
+            <div className="signout">
+                <Button1_SignOut onClick={handleExit}>
+                    Sign Out
+                </Button1_SignOut>
+            </div>
+
+        </div>
+    )
 }
 
 export default Navbar

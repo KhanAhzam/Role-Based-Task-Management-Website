@@ -1,5 +1,6 @@
 import React from 'react'
-import { useState, useContext } from 'react';
+import { useState, useContext} from 'react';
+import { useNavigate } from "react-router-dom";
 
 import Button2_SignIn from '../../components/Buttons/Button2_SignIn'
 import AuthContext from '../../context/AuthContext';
@@ -7,10 +8,10 @@ import AuthContext from '../../context/AuthContext';
 const SignIn = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
     const [error, setError] = useState("");
 
     const { signinFn } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -20,14 +21,20 @@ const SignIn = () => {
             return;
         }
 
-        const success = signinFn(email, password);
+        const loggedInUser = signinFn(email, password);
 
-        if(!success){
+        if(loggedInUser == null){
             setError("Invalid Email or Password");
             return;
         }
 
         setError("");
+
+        if(loggedInUser.role === "admin"){
+            navigate("/admin/dashboard");
+        }else{
+            navigate("/user/dashboard");
+        }
     };
 
     return (

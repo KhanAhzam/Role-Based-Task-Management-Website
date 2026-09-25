@@ -8,40 +8,47 @@ export const AuthProvider = ({ children }) => {
     const signinFn = (email, password) => {
         
         if (email === "starscript@gmail.com" && password === "1234") {
-            setUser({
+            const loggedInUser = {
                 id: 2,
                 name: "Test_Acc",
                 email: email,
                 role: "user"
-            });
-            return true;
+            };
+            setUser(loggedInUser);
+            return loggedInUser;
         }
 
         if (email === "neptune@hotmail.com" && password === "1234") {
-            setUser({
+            const loggedInUser = {
                 id: 3,
                 name: "Jack",
                 email: email,
                 role: "user"
-            });
-            return true;
+            };
+            setUser(loggedInUser);
+            return loggedInUser;
         }
         
         if (email === "ahzam003@gmail.com" && password === "1234") {
-            setUser({
+            const loggedInUser = {
                 id: 1,
                 name: "Ahzam",
                 email: email,
                 role: "admin"
-            });
-            return true;
+            };
+            setUser(loggedInUser);
+            return loggedInUser;
         }
 
-        return false;
+        return null;
+    };
+
+    const signoutFn = () => {
+        setUser(null);
     };
 
     return (
-        <AuthContext.Provider value={{ user, signinFn }}>
+        <AuthContext.Provider value={{ user, signinFn, signoutFn }}>
             {children}
         </AuthContext.Provider>
     );

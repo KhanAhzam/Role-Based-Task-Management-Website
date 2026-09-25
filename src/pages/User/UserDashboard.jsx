@@ -1,14 +1,14 @@
 import React from 'react'
 
-const Dashboard = () => {
+const UserDashboard = () => {
   return (
     <div className='flex flex-col p-10 min-h-full'>
         <h1 className='text-3xl'>Dashboard</h1>
         <div className='text-6xl'>
-            CONTENT TO BE ADDED HERE
+            This is a User Dashboard
         </div>
     </div>
   )
 }
 
-export default Dashboard
+export default UserDashboard
